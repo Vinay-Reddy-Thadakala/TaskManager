@@ -1,0 +1,34 @@
+﻿@model TaskManager.Models.TaskItem
+
+<div class="container mt-5">
+    <div class="card shadow-sm rounded">
+        <div class="card-body">
+            <h2 class="card-title text-info mb-4">📋 Task Details</h2>
+
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold">Title</dt>
+                <dd class="col-sm-9">@Model.Title</dd>
+
+                <dt class="col-sm-3 fw-bold">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+
+                <dt class="col-sm-3 fw-bold">Completed</dt>
+                <dd class="col-sm-9">
+                    @if (Model.IsCompleted)
+                    {
+                        <span class="badge bg-success">Yes</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">No</span>
+                    }
+                </dd>
+            </dl>
+
+            <div class="mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info me-2">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
