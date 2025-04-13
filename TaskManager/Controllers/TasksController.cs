@@ -9,14 +9,18 @@ namespace TaskManager.Controllers
 {
     public class TasksController : Controller
     {
+        private readonly ILogger<TasksController> _logger;
+
         private readonly ApplicationDbContext _context;
 
-        public TasksController(ApplicationDbContext context)
+        public TasksController(ILogger<TasksController> logger, ApplicationDbContext context)
         {
+            _logger = logger;
             _context = context;
         }
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("Task Index page visited at {Time}", DateTime.UtcNow);
             var taskList = await _context.Tasks.ToListAsync();
             return View(taskList);
         }
